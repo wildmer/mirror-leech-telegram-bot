@@ -459,7 +459,7 @@ async def update_private_file(_, message, pre_message):
         elif file_name in {".netrc", "netrc"}:
             await (await create_subprocess_exec("touch", ".netrc")).wait()
             await (await create_subprocess_exec("chmod", "600", ".netrc")).wait()
-            await (await create_subprocess_exec("cp", ".netrc", "/root/.netrc")).wait()
+            await (await create_subprocess_exec("cp", ".netrc", "~/.netrc")).wait()
         await delete_message(message)
     elif doc := message.document:
         file_name = doc.file_name
@@ -503,7 +503,7 @@ async def update_private_file(_, message, pre_message):
                 await rename("netrc", ".netrc")
                 file_name = ".netrc"
             await (await create_subprocess_exec("chmod", "600", ".netrc")).wait()
-            await (await create_subprocess_exec("cp", ".netrc", "/root/.netrc")).wait()
+            await (await create_subprocess_exec("cp", ".netrc", "~/.netrc")).wait()
         elif file_name == "config.py":
             await load_config()
         if "@github.com" in Config.UPSTREAM_REPO:

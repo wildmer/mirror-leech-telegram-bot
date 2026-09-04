@@ -254,7 +254,7 @@ async def load_configurations():
 
     await (
         await create_subprocess_shell(
-            "chmod 600 .netrc && cp .netrc /root/.netrc && chmod +x aria-nox-nzb.sh && ./aria-nox-nzb.sh"
+            "chmod 600 .netrc && cp .netrc ~/.netrc && chmod +x aria-nox-nzb.sh && ./aria-nox-nzb.sh"
         )
     ).wait()
 
