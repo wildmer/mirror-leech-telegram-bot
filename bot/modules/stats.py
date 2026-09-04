@@ -20,18 +20,18 @@ from ..helper.telegram_helper.message_utils import send_message
 commands = {
     "aria2": (["aria2c", "--version"], r"aria2 version ([\d.]+)"),
     "qBittorrent": (["qbittorrent-nox", "--version"], r"qBittorrent v([\d.]+)"),
-    "SABnzbd+": (["sabnzbdplus", "--version"], r"sabnzbdplus-([\d.]+)"),
+    "SABnzbd+": (["sabnzbd", "--version"], r"sabnzbd-([\d.]+)"),
     "python": (["python3", "--version"], r"Python ([\d.]+)"),
     "rclone": (["rclone", "--version"], r"rclone v([\d.]+)"),
     "yt-dlp": (["yt-dlp", "--version"], r"([\d.]+)"),
     "ffmpeg": (["ffmpeg", "-version"], r"ffmpeg version ([\d.]+(-\w+)?).*"),
-    "7z": (["7z", "i"], r"7-Zip ([\d.]+)"),
+    "7z": (["7z", "i"], r"7-Zip ((\[\d{2}\] )?[\d.]+)"),  # r"7-Zip ([\d.]+)"),
 }
 
 
 @new_task
 async def bot_stats(_, message):
-    total, used, free, disk = disk_usage("/")
+    total, used, free, disk = disk_usage("/storage/emulated")
     swap = swap_memory()
     memory = virtual_memory()
     per_cpu = cpu_percent(interval=1, percpu=True)
